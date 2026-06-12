@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="bn" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>হাসিব হোসেন • প্রফেশনাল মোবাইল অ্যান্ড্রয়েড অ্যাপ ডেভেলপার</title>
+   
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Orbitron:wght@500;600;700&family=Noto+Sans+Bengali:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --accent: #22d3ee;
+      --bg: #0a0f1c;
+      --surface: rgba(15, 23, 42, 0.65);
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --border: rgba(99, 102, 241, 0.18);
+      --glow: rgba(34, 211, 238, 0.25);
+    }
+
+    body {
+      font-family: 'Inter', 'Noto Sans Bengali', system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .font-orbitron { font-family: 'Orbitron', sans-serif; }
+
+    .glass {
+      background: var(--surface);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid var(--border);
+      box-shadow: 0 8px 32px rgba(0,0,0,0.4);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--primary), var(--accent));
+      transition: all 0.4s ease;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 30px var(--glow);
+    }
+
+    .nav-link {
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    .nav-link:hover {
+      color: var(--accent);
+    }
+
+    .nav-link::after {
+      content: '';
+      position: absolute;
+      width: 0;
+      height: 2px;
+      bottom: -4px;
+      left: 0;
+      background: var(--accent);
+      transition: width 0.3s ease;
+    }
+
+    .nav-link:hover::after {
+      width: 100%;
+    }
+
+    .section-title {
+      background: linear-gradient(90deg, var(--primary), var(--accent), var(--primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-size: 200% auto;
+      animation: gradient 8s linear infinite;
+    }
+
+    @keyframes gradient {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    
+    /* Subtle ambient glow */
+  .glow-bg {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,0,0,0.15) 0%, transparent 70%);
+    z-index: -1;
+    animation: softPulse 8s infinite ease-in-out;
+  }
+
+  @keyframes softPulse {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.1); }
+  }
+          .scrolling-text {
+            margin-top: 15px;
+            width: 100%;
+            font-size: 1em;
+            color: cyan;
+            text-align: center;
+            padding: 10px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            display: block;
+            /* animation: scroll 10s linear infinite, glowEffect 1.5s infinite alternate; */
+            text-shadow: 0 0 5px red, 0 0 10px red, 0 0 20px red;
+        }
+
+        @keyframes glowEffect {
+            0% {
+                text-shadow: 0 0 5px red, 0 0 10px red;
+            }
+            100% {
+                text-shadow: 0 0 10px red, 0 0 20px red;
+            }
+        }
+              .neon-text {
+            font-size: 2.5em;
+            color: white;
+            text-shadow: 0 0 5px green, 0 0 10px green, 0 0 20px green, 0 0 40px green;
+            animation: neonEffect 1.5s infinite alternate, colorChange 1s infinite;
+            text-align: center;
+        }
+
+        @keyframes neonEffect {
+            0% {
+                text-shadow: 0 0 5px green, 0 0 10px green;
+            }
+            100% {
+                text-shadow: 0 0 10px green, 0 0 20px green;
+            }
+        }
+
+        @keyframes colorChange {
+            0% { color: red; }
+            25% { color: blue; }
+            50% { color: green; }
+            75% { color: yellow; }
+            100% { color: purple; }
+        }
+
+        @keyframes backgroundChange {
+            0% { background: black; }
+            25% { background: #002b36; }
+            50% { background: #001f29; }
+            75% { background: #1e1e1e; }
+            100% { background: black; }
+        }
+             .glitch {
+            animation: glitch 1s infinite;
+            text-align: center;
+        }
+
+        @keyframes glitch {
+            0% { text-shadow: 3px 3px red; }
+            50% { text-shadow: -3px -3px red; }
+            100% { text-shadow: 3px 3px red; }
+        }
+
+}
+  </style>
+</head>
+<body class="antialiased">
+
+  <!-- Navbar -->
+  <nav class="fixed top-0 w-full z-50 glass border-b border-white/5">
+    <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+      <div class="flex items-center gap-3.5">
+        <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-[--primary] to-[--accent] flex items-center justify-center text-3xl font-orbitron font-bold text-white shadow-lg">®</div>
+        <span class="text-2xl md:text-3xl font-orbitron font-semibold tracking-tight">TEAM S-H-T</span>
+      </div>
+
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="hidden md:hidden glass border-t border-white/10 py-8 px-6">
+      <div class="flex flex-col items-center gap-8 text-xl font-medium">
+         
+      </div>
+    </div>
+  </nav>
+
+ 
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-24 md:py-32 bg-gradient-to-b from-[--bg] to-black/30">
+    <div class="max-w-7xl mx-auto px-6">
+       <div class="glow-bg"></div>
+
+  <h2 class="neon-text"> Our Service </h2>
+  <div class="scrolling-text">
+            <marquee behavior="" direction="left">We hack to defend the digital world</marquee>
+        </div>
+  <h5 class="glitch">© Developer - Saiko Boy Rony Ali </h5>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <div class="project-card glass rounded-3xl overflow-hidden" data-aos="fade-up" data-aos-duration="800">
+                      <img src="../SERVICE/1.jpg" alt="1" class="w-full h-64 object-cover" loading="lazy"/>
+          
+          <div class="p-8 md:p-10">
+            <h3 class="text-2xl md:text-3xl font-bold mb-5">Penetration Testing</h3>
+              <h4 class="text-1xl md:text-2xl font-bold mb-3"><small>Web, Mobile & Network Security </small></h4>
+            <p class="text-[--text-muted] mb-6 line-clamp-4 text-base leading-relaxed">
+              আমরা উন্নত স্তরের পেনেট্রেশন টেস্টিং করে ওয়েবসাইট, মোবাইল অ্যাপ ও নেটওয়ার্কে থাকা দুর্বলতা শনাক্ত করি। রিপোর্টসহ নিরাপত্তা পরামর্শ প্রদান করা হয়। </p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              
+                              <a href="SHT.html" target="_blank" class="py-4 btn-primary rounded-2xl font-semibold flex items-center justify-center gap-3">
+                    <i class="fas fa-virus text-xl"></i>   
+                </a>
+                          </div>
+          </div>
+        </div>
+                <div class="project-card glass rounded-3xl overflow-hidden" data-aos="fade-up" data-aos-duration="800">
+                      <img src="../SERVICE/2.jpg"class="w-full h-64 object-cover" loading="lazy"/>
+          
+          <div class="p-8 md:p-10">
+            <h3 class="text-2xl md:text-3xl font-bold mb-5">Threat Monitoring </h3>
+            <h4 class="text-1xl md:text-2xl font-bold mb-3"><small>Real-Time Security Alerts</small></h4>
+            <p class="text-[--text-muted] mb-6 line-clamp-4 text-base leading-relaxed">
+              আমাদের রিয়েল-টাইম মনিটরিং সার্ভিস হ্যাকিং ও সাইবার আক্রমণের পূর্বাভাস দিয়ে দ্রুত প্রতিক্রিয়া নিশ্চিত করে। </p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              
+                              <a href="SHT.html" target="_blank" class="py-4 btn-primary rounded-2xl font-semibold flex items-center justify-center gap-3">
+                  <i class="fas fa-virus text-xl"></i>  
+                </a>
+                          </div>
+          </div>
+        </div>
+        
+        <div class="project-card glass rounded-3xl overflow-hidden" data-aos="fade-up" data-aos-duration="800">
+                      <img src="../SERVICE/3.jpg"class="w-full h-64 object-cover" loading="lazy"/>
+          
+          <div class="p-8 md:p-10">
+            <h3 class="text-2xl md:text-3xl font-bold mb-5">Malware Removal </h3>
+            <h4 class="text-1xl md:text-2xl font-bold mb-3"><small>Clean & Secure Systems</small></h4>
+            <p class="text-[--text-muted] mb-6 line-clamp-4 text-base leading-relaxed">
+              ভাইরাস, র‍্যানসমওয়্যার ও ট্রোজান ইত্যাদি সনাক্ত করে সম্পূর্ণভাবে রিমুভ করি এবং এর উৎস বিশ্লেষণ করে রিপোর্ট দেই। </p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              
+                              <a href="SHT.html" target="_blank" class="py-4 btn-primary rounded-2xl font-semibold flex items-center justify-center gap-3">
+                  <i class="fas fa-virus text-xl"></i>  
+                </a>
+                          </div>
+          </div>
+        </div>
+        
+        <div class="project-card glass rounded-3xl overflow-hidden" data-aos="fade-up" data-aos-duration="800">
+                      <img src="../SERVICE/4.jpg"class="w-full h-64 object-cover" loading="lazy"/>
+          
+          <div class="p-8 md:p-10">
+            <h3 class="text-1xl md:text-2xl font-bold mb-4">Vulnerability Assessment</h3>
+            <h4 class="text-1xl md:text-2xl font-bold mb-3"><small>Identify and Fix Weaknesses</small></h4>
+            <p class="text-[--text-muted] mb-6 line-clamp-4 text-base leading-relaxed">
+              আপনার ওয়েবসাইট বা সার্ভারের যেকোনো দুর্বল জায়গা বিশ্লেষণ করে সমাধানের সুপারিশ প্রদান করি। </p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              
+                              <a href="SHT.html" target="_blank" class="py-4 btn-primary rounded-2xl font-semibold flex items-center justify-center gap-3">
+                  <i class="fas fa-virus text-xl"></i>  
+                </a>
+                          </div>
+          </div>
+        </div>
+        
+        <div class="project-card glass rounded-3xl overflow-hidden" data-aos="fade-up" data-aos-duration="800">
+                      <img src="../SERVICE/5.jpg"class="w-full h-64 object-cover" loading="lazy"/>
+          
+          <div class="p-8 md:p-10">
+            <h3 class="text-1.5xl md:text-3xl font-bold mb-5">Cyber security & Awareness</h3>
+            <h4 class="text-1xl md:text-2xl font-bold mb-3"><small>Train Your Team, Test Your Security</small></h4>
+            <p class="text-[--text-muted] mb-6 line-clamp-4 text-base leading-relaxed">
+              আপনার প্রতিষ্ঠান বা টিমের নিরাপত্তা সম্পর্কে সচেতনতা তৈরি করতে আমরা ইথিক্যাল হ্যাকিং ট্রেনিং ও লাইভ ডেমো প্রদান করি। </p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              
+                              <a href="SHT.html" target="_blank" class="py-4 btn-primary rounded-2xl font-semibold flex items-center justify-center gap-3">
+                  <i class="fas fa-virus text-xl"></i>  
+                </a>
+                          </div>
+          </div>
+        </div>
+        
+        <div class="project-card glass rounded-3xl overflow-hidden" data-aos="fade-up" data-aos-duration="800">
+                      <img src="../SERVICE/6.jpg"class="w-full h-64 object-cover" loading="lazy"/>
+          
+          <div class="p-8 md:p-10">
+            <h3 class="text-1.5xl md:text-3xl font-bold mb-5">Email Security Solutions</h3>
+            <h4 class="text-1xl md:text-2xl font-bold mb-3"><small>Email Spoofing & Phishing Analysis</small></h4>
+            <p class="text-[--text-muted] mb-6 line-clamp-4 text-base leading-relaxed">
+              ইমেইল স্পুফিং, ফিশিং এবং বিজনেস ইমেইল কম্প্রোমাইজ প্রতিরোধে নিরাপত্তা বিশ্লেষণ ও সমাধান প্রদান করা হয়।</p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              
+                              <a href="SHT.html" target="_blank" class="py-4 btn-primary rounded-2xl font-semibold flex items-center justify-center gap-3">
+                  <i class="fas fa-virus text-xl"></i>  
+                </a>
+                          </div>
+          </div>
+        </div>
+        
+        <div class="project-card glass rounded-3xl overflow-hidden" data-aos="fade-up" data-aos-duration="800">
+                      <img src="../SERVICE/7.jpg"class="w-full h-64 object-cover" loading="lazy"/>
+          
+          <div class="p-8 md:p-10">
+            <h3 class="text-1.5xl md:text-3xl font-bold mb-5">Human-Focused Security</h3>
+            <h4 class="text-1xl md:text-2xl font-bold mb-3"><small>Social Engineering Testing</small></h4>
+            <p class="text-[--text-muted] mb-6 line-clamp-4 text-base leading-relaxed">
+              মানবিক দুর্বলতার ওপর ভিত্তি করে টেস্টিং করে আপনার টিমকে সোশ্যাল ইঞ্জিনিয়ারিং আক্রমণ থেকে সুরক্ষা দিতে ট্রেনিং ও সিমুলেশন করি।</p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              
+                              <a href="SHT.html" target="_blank" class="py-4 btn-primary rounded-2xl font-semibold flex items-center justify-center gap-3">
+                  <i class="fas fa-virus text-xl"></i>  
+                </a>
+                          </div>
+          </div>
+        </div>
+        
+        <div class="project-card glass rounded-3xl overflow-hidden" data-aos="fade-up" data-aos-duration="800">
+                      <img src="../SERVICE/8.jpg"class="w-full h-64 object-cover" loading="lazy"/>
+          
+          <div class="p-8 md:p-10">
+            <h3 class="text-2xl md:text-3xl font-bold mb-5">Digital Forensics </h3>
+            <h4 class="text-1xl md:text-2xl font-bold mb-3"><small>Investigate Cyber Incidents</small></h4>
+            <p class="text-[--text-muted] mb-6 line-clamp-4 text-base leading-relaxed">
+              যেকোনো সাইবার হামলার ক্ষেত্রে ডিজিটাল ফরেনসিক করে প্রমাণ সংগ্রহ ও হ্যাকার শনাক্তকরণে সহায়তা করি।</p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              
+                              <a href="SHT.html" target="_blank" class="py-4 btn-primary rounded-2xl font-semibold flex items-center justify-center gap-3">
+                  <i class="fas fa-virus text-xl"></i>  
+                </a>
+                          </div>
+          </div>
+        </div>
+        
+        <div class="project-card glass rounded-3xl overflow-hidden" data-aos="fade-up" data-aos-duration="800">
+                      <img src="../SERVICE/9.jpg"class="w-full h-64 object-cover" loading="lazy"/>
+          
+          <div class="p-8 md:p-10">
+            <h3 class="text-1.5xl md:text-3xl font-bold mb-5">Dark Web Monitoring</h3>
+            <h4 class="text-1xl md:text-2xl font-bold mb-3"><small>Monitor Leaks & Data Breaches</small></h4>
+            <p class="text-[--text-muted] mb-6 line-clamp-4 text-base leading-relaxed">
+              আপনার ইমেইল, পাসওয়ার্ড বা গোপন তথ্য ডার্ক ওয়েবে শেয়ার হয়েছে কিনা তা মনিটরিং করে আপনাকে আগেই সতর্ক করি।</p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              
+                              <a href="SHT.html" target="_blank" class="py-4 btn-primary rounded-2xl font-semibold flex items-center justify-center gap-3">
+                  <i class="fas fa-virus text-xl"></i>  
+                </a>
+                          </div>
+          </div>
+        </div>
+        
+        <div class="project-card glass rounded-3xl overflow-hidden" data-aos="fade-up" data-aos-duration="800">
+                      <img src="../SERVICE/10.jpg"class="w-full h-64 object-cover" loading="lazy"/>
+          
+          <div class="p-8 md:p-10">
+            <h3 class="text-2xl md:text-3xl font-bold mb-5">Secure Development</h3>
+            <h4 class="text-1xl md:text-2xl font-bold mb-3"><small>Build Secure Apps & Sites</small></h4>
+            <p class="text-[--text-muted] mb-6 line-clamp-4 text-base leading-relaxed">
+              আমরা নিরাপদ ওয়েবসাইট ও অ্যাপ ডেভেলপ করি যেখানে সাইবার সিকিউরিটি প্র্যাকটিস গুলো আগে থেকেই ইন্টিগ্রেট করা থাকে।</p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              
+                              <a href="SHT.html" target="_blank" class="py-4 btn-primary rounded-2xl font-semibold flex items-center justify-center gap-3">
+                  <i class="fas fa-virus text-xl"></i>  
+                </a>
+                          </div>
+          </div>
+        </div>
+        
+        <div class="project-card glass rounded-3xl overflow-hidden" data-aos="fade-up" data-aos-duration="800">
+                      <img src="../SERVICE/11.jpg"class="w-full h-64 object-cover" loading="lazy"/>
+          
+          <div class="p-8 md:p-10">
+            <h3 class="text-2xl md:text-3xl font-bold mb-5">Bug Bounty Hunting </h3>
+            <h4 class="text-1xl md:text-2xl font-bold mb-3"><small>Reward-Based Vulnerability Management</small></h4>
+            <p class="text-[--text-muted] mb-6 line-clamp-4 text-base leading-relaxed">
+              আমরা নিরাপত্তা দুর্বলতা খোঁজার জন্য Bug Bounty প্রোগ্রাম পরিচালনায় সহায়তা করি, যেখানে রিসার্চাররা রিপোর্ট করলে তাদের পুরস্কৃত করা হয়। এটি প্রতিষ্ঠানের নিরাপত্তা জোরদার করতে সহায়ক।</p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              
+                              <a href="SHT.html" target="_blank" class="py-4 btn-primary rounded-2xl font-semibold flex items-center justify-center gap-3">
+                  <i class="fas fa-virus text-xl"></i>  
+                </a>
+                          </div>
+          </div>
+        </div>
+        
+        <div class="project-card glass rounded-3xl overflow-hidden" data-aos="fade-up" data-aos-duration="800">
+                      <img src="../SERVICE/12.jpg"class="w-full h-64 object-cover" loading="lazy"/>
+          
+          <div class="p-8 md:p-10">
+            <h3 class="text-1.5xl md:text-3xl font-bold mb-5">Security Consultation</h3>
+            <h4 class="text-1xl md:text-2xl font-bold mb-3"><small>Expert Guidance for Your Cyber Defense</small></h4>
+            <p class="text-[--text-muted] mb-6 line-clamp-4 text-base leading-relaxed">
+              আমাদের সাইবার বিশেষজ্ঞরা আপনার প্রতিষ্ঠানের বর্তমান নিরাপত্তা অবস্থা বিশ্লেষণ করে রিস্ক নির্ধারণ এবং উন্নত নিরাপত্তা গাইডলাইন দিয়ে সহযোগিতা করে থাকেন।</p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              
+                              <a href="SHT.html" target="_blank" class="py-4 btn-primary rounded-2xl font-semibold flex items-center justify-center gap-3">
+                  <i class="fas fa-virus text-xl"></i>  
+                </a>
+                          </div>
+          </div>
+        </div>
+        
+        <div class="project-card glass rounded-3xl overflow-hidden" data-aos="fade-up" data-aos-duration="800">
+                      <img src="../SERVICE/13.jpg"class="w-full h-64 object-cover" loading="lazy"/>
+          
+          <div class="p-8 md:p-10">
+            <h3 class="text-2xl md:text-3xl font-bold mb-5">Network Hardening</h3>
+            <h4 class="text-1xl md:text-2xl font-bold mb-3"><small>Fortify Your Network Infrastructure</small></h4>
+            <p class="text-[--text-muted] mb-6 line-clamp-4 text-base leading-relaxed">
+              আমরা আপনার সার্ভার, রাউটার, ফায়ারওয়াল, ও LAN/WAN নেটওয়ার্ককে কনফিগার করে এমনভাবে নিরাপদ করি যাতে বাহ্যিক ও অভ্যন্তরীণ আক্রমণ প্রতিরোধ করা যায়।</p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              
+                              <a href="SHT.html" target="_blank" class="py-4 btn-primary rounded-2xl font-semibold flex items-center justify-center gap-3">
+                  <i class="fas fa-virus text-xl"></i>  
+                </a>
+                          </div>
+          </div>
+        </div>
+        
+        <div class="project-card glass rounded-3xl overflow-hidden" data-aos="fade-up" data-aos-duration="800">
+                      <img src="../SERVICE/14.jpg"class="w-full h-64 object-cover" loading="lazy"/>
+          
+          <div class="p-8 md:p-10">
+            <h3 class="text-2xl md:text-3xl font-bold mb-5">Programming </h3>
+            <h4 class="text-1xl md:text-2xl font-bold mb-3"><small>Build Smart Solutions with Code</small></h4>
+            <p class="text-[--text-muted] mb-6 line-clamp-4 text-base leading-relaxed">
+              আমরা Python, PHP, JavaScript , C++, C# সহ বিভিন্ন ভাষায় কাস্টম স্ক্রিপ্ট ও অটোমেশন টুল তৈরি করি। Ethical Hacking, Task Automation এবং Cybersecurity Tool Development আমাদের অন্যতম দক্ষতা।</p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              
+                              <a href="SHT.html" target="_blank" class="py-4 btn-primary rounded-2xl font-semibold flex items-center justify-center gap-3">
+                  <i class="fas fa-virus text-xl"></i>  
+                </a>
+                          </div>
+          </div>
+        </div>
+        
+        <div class="project-card glass rounded-3xl overflow-hidden" data-aos="fade-up" data-aos-duration="800">
+                      <img src="../SERVICE/15.jpg"class="w-full h-64 object-cover" loading="lazy"/>
+          
+          <div class="p-8 md:p-10">
+            <h3 class="text-2xl md:text-3xl font-bold mb-5">Web Development</h3>
+            <h4 class="text-1xl md:text-2xl font-bold mb-3"><small>Design, Develop & Secure Your Website</small></h4>
+            <p class="text-[--text-muted] mb-6 line-clamp-4 text-base leading-relaxed">
+              আমরা ওয়েবসাইট তৈরি করি (Static, Dynamic, E-commerce, Portfolio), এবং সাথে নিরাপত্তা যুক্ত করি যেন ওয়েবসাইট হ্যাকিং, SQL Injection বা XSS আক্রমণ থেকে সুরক্ষিত থাকে।</p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              
+                              <a href="SHT.html" target="_blank" class="py-4 btn-primary rounded-2xl font-semibold flex items-center justify-center gap-3">
+                  <i class="fas fa-virus text-xl"></i>  
+                </a>
+                          </div>
+          </div>
+        </div>
+        
+        <div class="project-card glass rounded-3xl overflow-hidden" data-aos="fade-up" data-aos-duration="800">
+                      <img src="../SERVICE/16.jpg"class="w-full h-64 object-cover" loading="lazy"/>
+          
+          <div class="p-8 md:p-10">
+            <h3 class="text-2xl md:text-3xl font-bold mb-5">Facebook ID & Page </h3>
+            <h4 class="text-1xl md:text-2xl font-bold mb-3"><small>Restore, Appeal & Reactivate Disabled Accounts</small></h4>
+            <p class="text-[--text-muted] mb-6 line-clamp-4 text-base leading-relaxed">
+              Facebook এর Policy অনুসারে কোনো ID বা Page যদি Disabled হয় – আমরা তার Appeal Process পরিচালনা করে পুনরায় চালু করার জন্য সাহায্য করি। Proper documentation ও security audit সাপোর্ট দেওয়া হয়।</p>
+
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+              
+                              <a href="SHT.html" target="_blank" class="py-4 btn-primary rounded-2xl font-semibold flex items-center justify-center gap-3">
+                  <i class="fas fa-virus text-xl"></i>  
+                </a>
+                          </div>
+          </div>
+        </div>
+        
+         
+                 
+  </section>
+
+  <footer class="py-12 border-t border-white/5 text-center text-[--text-muted]">
+    <p>Copyright © All Reserve By TEAM S-H-T</p>
+  </footer>
+
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script>
+    AOS.init({ once: true, duration: 900, easing: 'ease-out-cubic' });
+
+    document.getElementById('menu-btn').addEventListener('click', () => {
+      document.getElementById('mobile-menu').classList.toggle('hidden');
+    });
+  </script>
+
+</body>
+</html>

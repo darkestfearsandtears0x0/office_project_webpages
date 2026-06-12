@@ -1,0 +1,746 @@
+
+
+<!-- contact_list.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>TEAM S-H-T IT INSTITUTE</title>
+
+  <!-- Tailwind (CDN) -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Font Awesome (icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <script defer src="https://unpkg.com/alpinejs@3.2.3/dist/cdn.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.2.1/flowbite.min.css" rel="stylesheet" />
+<meta name="google-site-verification" content="K7KCMqPHsmHlXeuV0vt7deQA5QcVwMeaXn7JnnI_vQo" />
+<!-- Google tag (gtag.js) -->
+ <!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-WVWRFVNF');
+</script>
+<!-- End Google Tag Manager -->
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-KZ0MWPPVMZ"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-KZ0MWPPVMZ');
+</script>
+
+  <!-- Favicons -->
+  <link rel="icon" type="image/jpg" sizes="32x32" href="../IMAGES/logo.jpg">
+  <link rel="icon" type="image/png" sizes="16x16" href="../IMAGES/logo.jpg">
+  <link rel="apple-touch-icon" sizes="180x180" href="../IMAGES/logo.jpg">
+  <link rel="manifest" href="https://www.tabularhost.top/site.webmanifest">
+  <meta name="theme-color" content="#1e40af"> <!-- Tailwind blue-800 for example -->
+
+  <!-- Structured Data for Google -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "TEAM S-H-T",
+    "url": "https://teamsht",
+    "logo": "../IMAGES/logo.jpg"
+  }
+  </script>
+<style>
+  /* Tiny custom CSS for visuals that Tailwind can't directly handle */
+  :root {
+    --accent: #FFD600;      /* yellow neon accent */
+    --accent-2: #FFEA00;    /* secondary yellow for highlights */
+  }
+
+  /* Hero base */
+  .hero {
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background: linear-gradient(to bottom right, #1a1a0f, #33330a, #0f0f0a); /* dark yellowish background */
+    color: white;
+  }
+
+  /* Network canvas fills hero */
+  #network-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+  }
+
+  /* Soft overlay for readability */
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    z-index: 1;
+  }
+
+  /* Ensure content above canvas */
+  .hero-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Subtle blinking cursor for typing spans */
+  .typing::after {
+    content: "";
+    display: inline-block;
+    width: 2px;
+    height: 1em;
+    background: var(--accent);
+    margin-left: 6px;
+    animation: blink 1s steps(2, start) infinite;
+    vertical-align: middle;
+  }
+  @keyframes blink { 50% { opacity: 0 } }
+
+  /* Back-to-top button */
+  #backToTop {
+    position: fixed;
+    right: 1.25rem;
+    bottom: 1.25rem;
+    z-index: 60;
+    display: none;
+    background-color: var(--accent);
+    color: #000;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px var(--accent), 0 0 30px var(--accent-2);
+    transition: all 0.3s;
+  }
+  #backToTop:hover {
+    box-shadow: 0 0 25px var(--accent), 0 0 50px var(--accent-2);
+  }
+
+  /* Support icons container above page content */
+  .support-icons { z-index: 70; }
+
+  /* Small screen: tooltips appear above */
+  @media (max-width: 500px) {
+    .support-btn::after { left: 50%; top: -38%; transform: translateX(-50%); }
+  }
+
+  /* Reduce motion if user prefers reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.001ms !important; animation-iteration-count: 1 !important; transition-duration: 0s !important; scroll-behavior: auto !important; }
+  }
+
+  /* Support buttons - yellow neon theme adjustments */
+  .support-btn.whatsapp { background-color: #FFD600; color: #000; }
+  .support-btn.whatsapp:hover { background-color: #FFEA00; }
+
+  .support-btn.email { background-color: #FFC107; color: #000; }
+  .support-btn.email:hover { background-color: #FFB300; }
+
+ .cyber-card {
+            transition: 0.3s;
+            background: linear-gradient(145deg, #0f172a, #1e293b);
+            border: 1px solid #00f0ff55;
+        }
+
+        .cyber-card:hover {
+            background-color: #111827;
+            box-shadow: 0 0 20px #00f0ff, 0 0 40px #00f0ff, 0 0 60px #00f0ff;
+            transform: translateY(-6px) scale(1.02);
+        }
+
+        h2 {
+            text-shadow: 0 0 5px #00f0ff, 0 0 10px #00f0ff;
+        }
+
+        p {
+            color: #c0f0ff;
+        }
+
+        a.no-underline {
+            text-decoration: none;
+        }
+        
+        /* Subtle ambient glow */
+  .glow-bg {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,0,0,0.15) 0%, transparent 70%);
+    z-index: -1;
+    animation: softPulse 8s infinite ease-in-out;
+  }
+
+  @keyframes softPulse {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.1); }
+  }
+          .scrolling-text {
+            margin-top: 15px;
+            width: 100%;
+            font-size: 1em;
+            color: cyan;
+            text-align: center;
+            padding: 10px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            display: block;
+            /* animation: scroll 10s linear infinite, glowEffect 1.5s infinite alternate; */
+            text-shadow: 0 0 5px red, 0 0 10px red, 0 0 20px red;
+        }
+
+        @keyframes glowEffect {
+            0% {
+                text-shadow: 0 0 5px red, 0 0 10px red;
+            }
+            100% {
+                text-shadow: 0 0 10px red, 0 0 20px red;
+            }
+        }
+              .neon-text {
+            font-size: 2.5em;
+            color: white;
+            text-shadow: 0 0 5px green, 0 0 10px green, 0 0 20px green, 0 0 40px green;
+            animation: neonEffect 1.5s infinite alternate, colorChange 1s infinite;
+        }
+
+        @keyframes neonEffect {
+            0% {
+                text-shadow: 0 0 5px green, 0 0 10px green;
+            }
+            100% {
+                text-shadow: 0 0 10px green, 0 0 20px green;
+            }
+        }
+
+        @keyframes colorChange {
+            0% { color: red; }
+            25% { color: blue; }
+            50% { color: green; }
+            75% { color: yellow; }
+            100% { color: purple; }
+        }
+
+        @keyframes backgroundChange {
+            0% { background: black; }
+            25% { background: #002b36; }
+            50% { background: #001f29; }
+            75% { background: #1e1e1e; }
+            100% { background: black; }
+        }
+             .glitch {
+            animation: glitch 1s infinite;
+        }
+
+        @keyframes glitch {
+            0% { text-shadow: 3px 3px red; }
+            50% { text-shadow: -3px -3px red; }
+            100% { text-shadow: 3px 3px red; }
+        }
+        
+
+</style>
+
+</head>
+<body class="antialiased text-slate-800 bg-white dark:bg-slate-900 dark:text-slate-100">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WVWRFVNF"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+<!-- ========== Header / Nav ========== -->
+<header id="site-header" class="fixed top-0 left-0 right-0 bg-white/90 dark:bg-yellow-900/80 backdrop-blur-md border-b border-yellow-700 dark:border-yellow-600 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-3">
+        <img src="../IMAGES/logo.jpg" class="w-10 h-10 rounded-full object-cover"/>
+        <span class="font-semibold text-lg text-yellow-900 dark:text-yellow-100"> TEAM S-H-T</span>
+      </a>
+
+      <!-- Desktop nav -->
+      <nav id="desktop-nav" class="hidden md:flex items-center gap-6 text-sm font-medium">
+        <a href="index.html" class="nav-link text-yellow-800 dark:text-yellow-100 hover:text-yellow-400">Home</a>
+        <a href="course.html" class="nav-link text-yellow-800 dark:text-yellow-100 hover:text-yellow-400">Course </a>
+        <a href="video-course.html" class="nav-link text-yellow-800 dark:text-yellow-100 hover:text-yellow-400">Video </a>
+        <a href="event.html" class="nav-link text-yellow-800 dark:text-yellow-100 hover:text-yellow-400">Event's</a>
+        <a href="tools.html" class="nav-link text-yellow-800 dark:text-yellow-100 hover:text-yellow-400">Tool's </a>
+        <a href="mentor.html" class="nav-link text-yellow-800 dark:text-yellow-100 hover:text-yellow-400">Mentor's</a>
+        <a href="ceo.html" class="nav-link text-yellow-800 dark:text-yellow-100 hover:text-yellow-400">CEO</a>   
+        <a href="Contact-list.html" class="nav-link text-yellow-800 dark:text-yellow-100 hover:text-yellow-400">Contact</a>
+        <a href="about.html" class="nav-link text-yellow-800 dark:text-yellow-100 hover:text-yellow-400">About</a>
+        <a href="service.html" class="nav-link text-yellow-800 dark:text-yellow-100 hover:text-yellow-400">Service's</a>
+        <a href="complain.html" class="nav-link text-yellow-800 dark:text-yellow-100 hover:text-yellow-400">Complain</a>
+        
+      </nav>
+
+      <!-- Right actions -->
+      <div class="flex items-center gap-3">
+        <!-- Theme toggle -->
+        <button id="theme-toggle" aria-label="Toggle theme" class="w-10 h-10 rounded-full flex items-center justify-center bg-yellow-800 text-black dark:bg-yellow-400 dark:text-black shadow-sm">
+          <span id="theme-icon">™⁷⁶⁶⁹</span>
+        </button>
+
+        <!-- Mobile menu button -->
+        <button id="mobile-toggle" aria-expanded="false" aria-controls="mobile-menu" class="md:hidden p-2 rounded-md text-yellow-800 dark:text-yellow-100 hover:bg-yellow-200 dark:hover:bg-yellow-700 transition">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden hidden absolute w-full bg-yellow-50 dark:bg-yellow-900/95 backdrop-blur-md border-b border-yellow-700 dark:border-yellow-600 z-40">
+    <div class="px-4 pt-2 pb-4 space-y-2">
+      <a href="index.html" class="block py-2 px-3 rounded text-yellow-800 dark:text-yellow-100 hover:bg-yellow-200 dark:hover:bg-yellow-700">Home</a>
+      <a href="course.html" class="block py-2 px-3 rounded text-yellow-800 dark:text-yellow-100 hover:bg-yellow-200 dark:hover:bg-yellow-700">Course List</a>
+      <a href="video-course.html" class="block py-2 px-3 rounded text-yellow-800 dark:text-yellow-100 hover:bg-yellow-200 dark:hover:bg-yellow-700">Video Course</a>
+      <a href="event.html" class="block py-2 px-3 rounded text-yellow-800 dark:text-yellow-100 hover:bg-yellow-200 dark:hover:bg-yellow-700">Event's</a>
+      <a href="tools.html" class="block py-2 px-3 rounded text-yellow-800 dark:text-yellow-100 hover:bg-yellow-200 dark:hover:bg-yellow-700">All Tool's</a>
+      <a href="mentor.html" class="block py-2 px-3 rounded text-yellow-800 dark:text-yellow-100 hover:bg-yellow-200 dark:hover:bg-yellow-700">Team Mentor's</a>
+      <a href="ceo.html" class="block py-2 px-3 rounded text-yellow-800 dark:text-yellow-100 hover:bg-yellow-200 dark:hover:bg-yellow-700">Team CEO</a>
+      <a href="Contact-list.html" class="block py-2 px-3 rounded text-yellow-800 dark:text-yellow-100 hover:bg-yellow-200 dark:hover:bg-yellow-700">Contact us</a>
+     <a href="about.html" class="block py-2 px-3 rounded text-yellow-800 dark:text-yellow-100 hover:bg-yellow-200 dark:hover:bg-yellow-700">About us</a>  
+     <a href="service.html" class="block py-2 px-3 rounded text-yellow-800 dark:text-yellow-100 hover:bg-yellow-200 dark:hover:bg-yellow-700">Our Service's </a>   
+     <a href="complain.html" class="block py-2 px-3 rounded text-yellow-800 dark:text-yellow-100 hover:bg-yellow-200 dark:hover:bg-yellow-700">Complain Us</a>
+     
+    </div>
+  </div>
+</header>
+
+
+<script>
+  // MOBILE MENU TOGGLE
+  const mobileToggle = document.getElementById('mobile-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  function closeMobileMenu() {
+    mobileMenu.classList.add('hidden');
+    mobileToggle.setAttribute('aria-expanded', 'false');
+  }
+
+  mobileToggle.addEventListener('click', (e) => {
+    const isOpen = !mobileMenu.classList.contains('hidden');
+    if(isOpen) closeMobileMenu();
+    else {
+      mobileMenu.classList.remove('hidden');
+      mobileToggle.setAttribute('aria-expanded', 'true');
+    }
+  });
+
+  // Close menu on link click
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', closeMobileMenu);
+  });
+
+  // Close menu when clicking outside
+  document.addEventListener('click', (e) => {
+    if (!mobileMenu.contains(e.target) && !mobileToggle.contains(e.target)) {
+      closeMobileMenu();
+    }
+  });
+</script>
+
+<!-- ========== Back to top button (Yellow Theme) ========== -->
+<button id="backToTop" title="Back to top"
+        class="hidden fixed right-5 bottom-5 bg-yellow-500 hover:bg-yellow-400 text-black w-12 h-12 rounded-full flex items-center justify-center shadow-[0_0_15px_#FFD600]"
+        aria-label="Back to top">
+  <i class="fas fa-arrow-up"></i>
+</button>
+
+<section class="hero relative">
+  <!-- canvas network (optional animated background) -->
+  <canvas id="network-canvas" aria-hidden="true" class="absolute inset-0 w-full h-full"></canvas>
+
+  <!-- dim overlay for contrast -->
+  <div class="absolute inset-0 bg-black/50"></div>
+
+  <!-- content -->
+  <div class="hero-content relative max-w-6xl mx-auto px-6 py-20 z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
+
+      <main>
+        <section class="body-font py-10">
+            <div class="container px-5 mx-auto text-center">
+                
+                <div class="flex flex-wrap -m-4 justify-center gap-4">
+
+<div class="glow-bg"></div>
+
+  <h4 class="neon-text"> OUR FAMILY</h4>
+  <div class="scrolling-text">
+            <marquee behavior="" direction="left"> We hack to defend the digital world.</marquee>
+            <h5 class="glitch" Style="color: white;">© Developer - Saiko Boy Rony Ali </h5>
+        </div>
+  
+
+                    <!-- OFFICIAL -->
+                    <div class="p-2 lg:w-1/4 md:w-1/2 w-full">
+                        <div onclick="location.href='SHT.html'" class="cyber-card h-full flex items-center p-5 rounded-xl cursor-pointer">
+                            <img alt="Staff"
+                                class="w-16 h-16 bg-gray-800 object-cover object-center flex-shrink-0 rounded-full mr-4 border border-blue-400"
+                                src="../IMAGES/official.jpg">
+                            <div class="flex-grow text-left">
+                                <h2 class="text-blue-400 title-font font-medium text-lg"><small> TEAM S-H-T OFFICIAL</small> </h2>
+                                <p class="text-sm md:text-base"> <small> •  System Hunter Taskforce </small> </br> •  <small> Saiko Hacker Team {R.M}</br> </small>•  <small> প্রতিষ্ঠা: ৯ জুন ২০২৩.. </br> </small> </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- IT -->
+                    <div class="p-2 lg:w-1/4 md:w-1/2 w-full">
+                        <div onclick="location.href='IT.html'" class="cyber-card h-full flex items-center p-5 rounded-xl cursor-pointer">
+                            <img alt="Staff"
+                                class="w-16 h-16 bg-gray-800 object-cover object-center flex-shrink-0 rounded-full mr-4 border border-blue-400"
+                                src="../IMAGES/logo.jpg">
+                            <div class="flex-grow text-left">
+                                <h2 class="text-blue-400 title-font font-medium text-lg">  TEAM S-H-T IT </h2>
+                                <p class="text-sm md:text-base"> <small> • TEAM S-H-T IT  INSTITUTE । </small> </br> •  <small>  প্রতিষ্ঠা: ০১ জানুয়ারি ২০২৬ </br> </small>    </p>
+                            </div>
+                        </div>
+                    </div>
+
+                     <!--  SAIKO World -->
+                    <div class="p-2 lg:w-1/4 md:w-1/2 w-full">
+                        <div onclick="location.href='SK.html'" class="cyber-card h-full flex items-center p-5 rounded-xl cursor-pointer">
+                            <img alt="Staff"
+                                class="w-16 h-16 bg-gray-800 object-cover object-center flex-shrink-0 rounded-full mr-4 border border-blue-400"
+                                src="../IMAGES/saiko.jpg">
+                            <div class="flex-grow text-left">
+                                <h2 class="text-blue-400 title-font font-medium text-lg"> SAIKO WORLD</h2>
+                                <p class="text-sm md:text-base"> <small> •  Red Team Simulation। </small> </br> •  <small> প্রতিষ্ঠা: ০৯ জুন ২০২৪..</br> </small>  </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!--  BD-C-C -->
+                    <div class="p-2 lg:w-1/4 md:w-1/2 w-full">
+                        <div onclick="location.href='bdcc.html'" class="cyber-card h-full flex items-center p-5 rounded-xl cursor-pointer">
+                            <img alt="Staff"
+                                class="w-16 h-16 bg-gray-800 object-cover object-center flex-shrink-0 rounded-full mr-4 border border-blue-400"
+                                src="../IMAGES/BD-C-C.jpg">
+                            <div class="flex-grow text-left">
+                                <h2 class="text-blue-400 title-font font-medium text-lg"> BD-C-C </h2>
+                                <p class="text-sm md:text-base"> <small> • BD Cyber Community </small> </br> • <small> প্রতিষ্ঠা: ২০ জানুয়ারি ২০২৫ </small></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!--  B-N-C-C -->
+                    <div class="p-2 lg:w-1/4 md:w-1/2 w-full">
+                        <div onclick="location.href='bncc.html'" class="cyber-card h-full flex items-center p-5 rounded-xl cursor-pointer">
+                            <img alt="Staff"
+                                class="w-16 h-16 bg-gray-800 object-cover object-center flex-shrink-0 rounded-full mr-4 border border-blue-400"
+                                src="../IMAGES/BNCC1.jpg">
+                            <div class="flex-grow text-left">
+                                <h2 class="text-blue-400 title-font font-medium text-lg"> BNCC </h2>
+                                <p class="text-sm md:text-base"> <small> • Cyber Crime Unit </small></br> • <small> প্রতিষ্ঠা: ২৬ জানুয়ারি ২০২৫ </small></p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                     <!-- চাঁপাই সংবাদ -->
+                    <div class="p-2 lg:w-1/4 md:w-1/2 w-full">
+                        <div onclick="location.href='media.html'" class="cyber-card h-full flex items-center p-5 rounded-xl cursor-pointer">
+                            <img alt="Staff"
+                                class="w-16 h-16 bg-gray-800 object-cover object-center flex-shrink-0 rounded-full mr-4 border border-blue-400"
+                                src="../IMAGES/media.jpg">
+                            <div class="flex-grow text-left">
+                                <h2 class="text-blue-400 title-font font-medium text-lg"> চাপাই সংবাদ - Times</h2>
+                                <p class="text-sm md:text-base"> <small> •  চাপাই প্রেস ক্লাব </small> </p>
+                            </div>
+                        </div>
+                    </div>
+                  
+ <!--  Cyber Crime Department -->
+                    <div class="p-2 lg:w-1/4 md:w-1/2 w-full">
+                        <div onclick="location.href='#'" class="cyber-card h-full flex items-center p-5 rounded-xl cursor-pointer">
+                            <img alt="Staff"
+                                class="w-16 h-16 bg-gray-800 object-cover object-center flex-shrink-0 rounded-full mr-4 border border-blue-400"
+                                src="../IMAGES/CID.jpg">
+                            <div class="flex-grow text-left">
+                                <h2 class="text-blue-400 title-font font-medium text-lg"> CID</h2>
+                                <p class="text-sm md:text-base"> <small> • Cyber Crime Department</small> </p>
+                            </div>
+                        </div>
+                    </div>
+ 
+  <!-- subtle animated background -->
+  <div class="absolute inset-0 -z-10">
+    <canvas id="footer-canvas" class="w-full h-full"></canvas>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
+      <!-- Logo & Description -->
+      <div>
+        <a href="#" class="flex items-center gap-3 mb-4">
+          <img src="../IMAGES/logo.jpg" alt="teamsht logo" class="w-10 h-10 rounded-full shadow-[0_0_15px_#FFD600]"/>
+          <span class="font-semibold text-lg text-yellow-400">TEAM S-H-T IT INSTITUTE</span>
+        </a>
+        <p class="text-sm text-yellow-200">Become a Specialist of Cyber security for Protecting your system.</p>
+      </div>
+      
+          <!-- Social Icons with Neon Glow -->
+    <div class="mt-10 border-t border-yellow-700 pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 relative">
+      <p class="text-sm z-10 text-yellow-400">&copy; <?= date('Y') ?> Copyright © All Reserve By TEAM S-H-T </p>
+
+      <div class="flex items-center gap-3 relative z-10">
+        <span class="absolute inset-0 -z-10 rounded-full bg-gradient-to-r from-yellow-500 via-yellow-400 to-yellow-300 opacity-30 animate-pulse blur-xl"></span>
+        <a href="https://www.facebook.com/teamshtit" class="w-9 h-9 rounded-full flex items-center justify-center bg-white/5 hover:bg-yellow-500 transition-all duration-300 transform hover:scale-110 text-yellow-900"><i class="fab fa-facebook-f"></i></a>
+        <a href="https://www.tiktok.com/@teamshtit?_r=1&_t=ZS-93kbip6LSBY" class="w-9 h-9 rounded-full flex items-center justify-center bg-white/5 hover:bg-yellow-600 transition-all duration-300 transform hover:scale-110 text-yellow-900"><i class="fab fa-tiktok"></i></a>
+        <a href="https://t.me/teamshtit" class="w-9 h-9 rounded-full flex items-center justify-center bg-white/5 hover:bg-yellow-500 transition-all duration-300 transform hover:scale-110 text-yellow-900"><i class="fab fa-telegram"></i></a>
+        <a href="https://www.instagram.com/teamshtit" class="w-9 h-9 rounded-full flex items-center justify-center bg-white/5 hover:bg-gradient-to-br hover:from-yellow-400 hover:to-yellow-200 transition-all duration-300 transform hover:scale-110 text-yellow-900"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- ========== Footer Background Canvas Animation ========== -->
+<script>
+  (function footerCanvas() {
+    const canvas = document.getElementById('footer-canvas');
+    if (!canvas) return;
+    const ctx = canvas.getContext('2d');
+    let w, h, particles = [];
+
+    function resize() {
+      w = canvas.width = canvas.clientWidth;
+      h = canvas.height = canvas.clientHeight;
+      initParticles();
+    }
+
+    function Particle(x, y, vx, vy, r) {
+      this.x = x; this.y = y; this.vx = vx; this.vy = vy; this.r = r;
+      this.draw = function() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.r, 0, Math.PI*2);
+        ctx.fillStyle = 'rgba(77,171,247,0.6)';
+        ctx.fill();
+      };
+      this.update = function() {
+        this.x += this.vx; this.y += this.vy;
+        if(this.x < 0 || this.x > w) this.vx *= -1;
+        if(this.y < 0 || this.y > h) this.vy *= -1;
+        this.draw();
+      };
+    }
+
+    function initParticles() {
+      particles = [];
+      const count = Math.min(60, Math.max(20, Math.floor(w*h/15000)));
+      for(let i=0;i<count;i++){
+        const r = Math.random()*1.5+0.5;
+        const x = Math.random()*(w-r*2)+r;
+        const y = Math.random()*(h-r*2)+r;
+        const vx = (Math.random()-0.5)*0.3;
+        const vy = (Math.random()-0.5)*0.3;
+        particles.push(new Particle(x,y,vx,vy,r));
+      }
+    }
+
+    function connectParticles() {
+      for(let a=0;a<particles.length;a++){
+        for(let b=a+1;b<particles.length;b++){
+          const dx = particles[a].x - particles[b].x;
+          const dy = particles[a].y - particles[b].y;
+          const dist = dx*dx + dy*dy;
+          if(dist<4000){
+            ctx.beginPath();
+            ctx.moveTo(particles[a].x, particles[a].y);
+            ctx.lineTo(particles[b].x, particles[b].y);
+            ctx.strokeStyle = `rgba(77,171,247,${1 - dist/4000})`;
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0,0,w,h);
+      particles.forEach(p=>p.update());
+      connectParticles();
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', () => {
+      clearTimeout(window._footerResize);
+      window._footerResize = setTimeout(resize, 120);
+    });
+
+    resize();
+    animate();
+  })();
+  
+  /* ---------------------------
+   CANVAS: NETWORK NODES ANIMATION (improved)
+----------------------------*/
+(function networkCanvas() {
+  const canvas = document.getElementById('network-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+  let w, h, particles = [], mouse = { x: null, y: null, radius: 150 };
+
+  function resize() {
+    const hero = document.querySelector('.hero');
+    w = canvas.width = hero.clientWidth;
+    h = canvas.height = hero.clientHeight;
+    initParticles();
+  }
+
+  // palette for colorful particles
+  const colors = ["#60a5fa", "#34d399", "#f472b6", "#facc15", "#a78bfa"];
+
+  function Particle(x, y, vx, vy, r, color) {
+    this.x = x; this.y = y; this.vx = vx; this.vy = vy; this.r = r; this.color = color;
+    this.draw = function() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+      ctx.fillStyle = this.color;
+      ctx.shadowColor = this.color;
+      ctx.shadowBlur = 12;
+      ctx.fill();
+      ctx.shadowBlur = 0; // reset
+    };
+    this.update = function() {
+      if (this.x + this.r > w || this.x - this.r < 0) this.vx *= -1;
+      if (this.y + this.r > h || this.y - this.r < 0) this.vy *= -1;
+      this.x += this.vx; this.y += this.vy;
+
+      // mouse hover repulse
+      if (mouse.x && Math.hypot(this.x - mouse.x, this.y - mouse.y) < mouse.radius) {
+        const dx = this.x - mouse.x;
+        const dy = this.y - mouse.y;
+        const dist = Math.hypot(dx, dy) || 1;
+        this.x += dx / dist * 6;
+        this.y += dy / dist * 6;
+      }
+      this.draw();
+    };
+  }
+
+  function initParticles() {
+    particles = [];
+    const area = w * h;
+    const count = Math.min(140, Math.max(25, Math.floor(area / 11000)));
+    for (let i = 0; i < count; i++) {
+      const r = Math.random() * 1.8 + 1;
+      const x = Math.random() * (w - r * 2) + r;
+      const y = Math.random() * (h - r * 2) + r;
+      const vx = (Math.random() - 0.5) * 0.7;
+      const vy = (Math.random() - 0.5) * 0.7;
+      const color = colors[Math.floor(Math.random() * colors.length)];
+      particles.push(new Particle(x, y, vx, vy, r, color));
+    }
+  }
+
+  function connectParticles() {
+    for (let a = 0; a < particles.length; a++) {
+      for (let b = a + 1; b < particles.length; b++) {
+        const dx = particles[a].x - particles[b].x;
+        const dy = particles[a].y - particles[b].y;
+        const dist = dx * dx + dy * dy;
+        const maxDist = (w / 7) * (h / 350);
+        if (dist < maxDist) {
+          const alpha = 0.5 - (dist / maxDist) * 0.5;
+          const grad = ctx.createLinearGradient(particles[a].x, particles[a].y, particles[b].x, particles[b].y);
+          grad.addColorStop(0, particles[a].color);
+          grad.addColorStop(1, particles[b].color);
+          ctx.beginPath();
+          ctx.moveTo(particles[a].x, particles[a].y);
+          ctx.lineTo(particles[b].x, particles[b].y);
+          ctx.strokeStyle = grad;
+          ctx.globalAlpha = alpha;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+          ctx.globalAlpha = 1;
+        }
+      }
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, w, h);
+    // subtle gradient background
+    const g = ctx.createLinearGradient(0, 0, w, h);
+    g.addColorStop(0, 'rgba(15,23,42,0.05)');
+    g.addColorStop(1, 'rgba(2,6,23,0.08)');
+    ctx.fillStyle = g;
+    ctx.fillRect(0, 0, w, h);
+
+    particles.forEach(p => p.update());
+    connectParticles();
+    requestAnimationFrame(animate);
+  }
+
+  // mouse events
+  window.addEventListener('mousemove', (e) => {
+    const rect = canvas.getBoundingClientRect();
+    mouse.x = e.clientX - rect.left;
+    mouse.y = e.clientY - rect.top;
+  });
+  window.addEventListener('mouseleave', () => { mouse.x = null; mouse.y = null; });
+
+  // resize handling
+  window.addEventListener('resize', () => {
+    clearTimeout(window._networkResize);
+    window._networkResize = setTimeout(resize, 120);
+  });
+
+  resize();
+  animate();
+})();
+
+/* ---------------------------
+       BACK TO TOP & HEADER HIDE ON SCROLL
+    ----------------------------*/
+    const backToTop = document.getElementById('backToTop');
+    const siteHeader = document.getElementById('site-header');
+    let lastScroll = window.scrollY;
+    window.addEventListener('scroll', () => {
+      const y = window.scrollY;
+      // show/hide back-to-top
+      if (y > 300) backToTop.style.display = 'flex';
+      else backToTop.style.display = 'none';
+
+      // header hide on scroll down, show on scroll up (but small threshold)
+      if (y > lastScroll && y > 80) {
+        siteHeader.style.transform = 'translateY(-110%)';
+      } else {
+        siteHeader.style.transform = 'translateY(0)';
+      }
+      lastScroll = y;
+    });
+
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+</script>
+
+  <!-- ========== Floating Support Icons (preserved) ========== -->
+  <div class="support-icons fixed left-5 bottom-8 flex flex-col gap-4">
+    <a href="https://wa.me/message/HSJORZIYVNUNF1?src=qr" target="_blank" class="support-btn whatsapp w-12 h-12 rounded-full flex items-center justify-center text-white shadow-lg" data-tooltip="Chat on WhatsApp" aria-label="WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="mailto:teamshtitinstitute@gmail.com" class="support-btn email w-12 h-12 rounded-full flex items-center justify-center text-white shadow-lg" data-tooltip="Email Support" aria-label="Email">
+      <i class="fas fa-envelope"></i>
+    </a>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,593 @@
+
+<!-- course.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TEAM S-H-T </title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+ 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ==========================================================================
+           1. CORE SYSTEM CONFIGURATION (DARK MILITARY THEME)
+           ========================================================================== */
+        :root {
+            --primary: #ff0033;
+            --primary-dark: #8a001c;
+            --primary-glow: rgba(255, 0, 51, 0.6);
+            --primary-dim: rgba(255, 0, 51, 0.1);
+            
+            --accent: #ffffff;
+            --accent-dim: rgba(255, 255, 255, 0.5);
+            
+            --bg-void: #000000;
+            --bg-panel: #08080a;
+            --bg-card: rgba(15, 15, 15, 0.85);
+            
+            --border: rgba(255, 255, 255, 0.1);
+            --border-active: rgba(255, 0, 51, 0.5);
+            
+            --font-head: 'Orbitron', sans-serif;
+            --font-body: 'Rajdhani', sans-serif;
+            --font-code: 'JetBrains Mono', monospace;
+        }
+
+        /* RESET */
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; -webkit-tap-highlight-color: transparent; }
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--bg-void); }
+        ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 4px; }
+
+        body {
+            background-color: var(--bg-void);
+            color: var(--accent);
+            font-family: var(--font-body);
+            min-height: 100vh;
+            display: flex; flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            font-size: 16px;
+        }
+
+        /* ==========================================================================
+           2. VISUAL FX LAYERS
+           ========================================================================== */
+        #canvas-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2; opacity: 0.3; pointer-events: none;
+        }
+        
+        .grid-overlay {
+            position: fixed; inset: 0; z-index: -1; pointer-events: none;
+            background: 
+                linear-gradient(rgba(255, 0, 51, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 0, 51, 0.03) 1px, transparent 1px);
+            background-size: 30px 30px;
+        }
+
+        .vignette {
+            position: fixed; inset: 0; z-index: -1; pointer-events: none;
+            background: radial-gradient(circle at center, transparent 30%, #000 100%);
+        }
+
+        /* ==========================================================================
+           3. PRELOADER (SYSTEM BOOT)
+           ========================================================================== */
+        .boot-screen {
+            position: fixed; inset: 0; background: #000; z-index: 9999;
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            transition: opacity 0.5s ease;
+        }
+        .boot-logo {
+            font-family: var(--font-head); font-size: 40px; font-weight: 900;
+            color: var(--primary); letter-spacing: 5px; margin-bottom: 20px;
+            animation: glitch 1s infinite alternate;
+        }
+        .loading-bar {
+            width: 200px; height: 2px; background: #222; position: relative; overflow: hidden;
+        }
+        .loading-progress {
+            position: absolute; left: 0; top: 0; height: 100%; width: 0%;
+            background: var(--primary); box-shadow: 0 0 10px var(--primary);
+            animation: load 2s ease-in-out forwards;
+        }
+        .boot-text {
+            margin-top: 10px; font-family: var(--font-code); font-size: 10px; color: #666;
+        }
+
+        /* ==========================================================================
+           4. LAYOUT CONTAINER (MOBILE SLIM PROFILE)
+           ========================================================================== */
+        .wrapper {
+            width: 100%; max-width: 500px; 
+            margin: 0 auto; padding: 0 0 40px 0;
+            position: relative; z-index: 10;
+        }
+
+        /* HEADER */
+        .top-bar {
+            padding: 20px; display: flex; justify-content: space-between; align-items: center;
+            border-bottom: 1px solid var(--border); background: rgba(0,0,0,0.8);
+            backdrop-filter: blur(10px); position: sticky; top: 0; z-index: 100;
+        }
+        .brand {
+            font-family: var(--font-head); font-weight: 800; font-size: 18px; 
+            letter-spacing: 1px; color: #fff; display: flex; align-items: center; gap: 8px;
+        }
+        .brand i { color: var(--primary); font-size: 20px; }
+        .status-badge {
+            font-family: var(--font-code); font-size: 10px; color: var(--primary);
+            border: 1px solid var(--primary); padding: 4px 8px; border-radius: 4px;
+            background: rgba(255,0,51,0.05); animation: pulse 2s infinite;
+        }
+
+        /* HERO SECTION */
+        .hero {
+            text-align: center; padding: 40px 20px; position: relative; overflow: hidden;
+        }
+        .hero-glitch {
+            font-family: var(--font-head); font-size: 42px; font-weight: 900;
+            line-height: 1; text-transform: uppercase; margin-bottom: 10px;
+            position: relative; display: inline-block;
+        }
+        .hero-glitch::before, .hero-glitch::after {
+            content: attr(data-text); position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+        }
+        .hero-glitch::before {
+            left: 2px; text-shadow: -1px 0 red; clip: rect(24px, 550px, 90px, 0);
+            animation: glitch-anim-2 3s infinite linear alternate-reverse;
+        }
+        .hero-glitch::after {
+            left: -2px; text-shadow: -1px 0 blue; clip: rect(85px, 550px, 140px, 0);
+            animation: glitch-anim 2.5s infinite linear alternate-reverse;
+        }
+        
+        .hero-sub {
+            font-size: 14px; color: #aaa; font-family: var(--font-code);
+            letter-spacing: 1px; margin-bottom: 20px;
+        }
+        .unit-badge {
+            display: inline-block; background: #111; border: 1px solid var(--border);
+            padding: 8px 16px; border-radius: 50px; font-size: 12px; font-weight: 700;
+            color: var(--primary); margin-bottom: 20px; box-shadow: 0 0 20px rgba(255,0,51,0.1);
+        }
+
+        /* ==========================================================================
+           5. CONTENT CARDS
+           ========================================================================== */
+        .content-area { padding: 0 20px; display: flex; flex-direction: column; gap: 20px; }
+
+        .info-card {
+            background: linear-gradient(145deg, #0a0a0c, #050505);
+            border: 1px solid var(--border); border-left: 3px solid var(--primary);
+            border-radius: 12px; padding: 25px; position: relative;
+            transform-style: preserve-3d; transition: transform 0.1s;
+        }
+        
+        .card-header {
+            display: flex; align-items: center; gap: 15px; margin-bottom: 15px;
+            border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 15px;
+        }
+        .card-icon {
+            width: 40px; height: 40px; background: rgba(255,0,51,0.1);
+            border-radius: 8px; display: flex; align-items: center; justify-content: center;
+            font-size: 20px; color: var(--primary); border: 1px solid var(--primary-dim);
+        }
+        .card-title {
+            font-family: var(--font-head); font-size: 16px; font-weight: 700; color: #fff;
+        }
+
+        .feature-list { list-style: none; }
+        .feature-list li {
+            display: flex; align-items: center; gap: 10px; font-size: 13px;
+            color: #ccc; margin-bottom: 10px; font-family: var(--font-body);
+        }
+        .feature-list li i { color: var(--primary); font-size: 10px; }
+
+        /* ==========================================================================
+           6. ACTION BUTTONS (THE MAIN ATTRACTION)
+           ========================================================================== */
+        .action-section {
+            margin-top: 30px; display: flex; flex-direction: column; gap: 20px;
+        }
+
+        .cyber-btn {
+            position: relative; width: 100%; padding: 22px;
+            background: transparent; border: 1px solid var(--primary);
+            color: var(--primary); font-family: var(--font-head); font-weight: 800;
+            font-size: 16px; letter-spacing: 2px; text-transform: uppercase;
+            cursor: pointer; overflow: hidden; transition: 0.3s;
+            clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+            display: flex; align-items: center; justify-content: center; gap: 15px;
+            text-decoration: none;
+        }
+
+        .cyber-btn::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,0,51,0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .cyber-btn:hover {
+            background: var(--primary); color: #000; box-shadow: 0 0 30px var(--primary-glow);
+            text-shadow: none; transform: scale(1.02); border-color: var(--primary);
+        }
+        .cyber-btn:hover::before { left: 100%; }
+
+        /* Button Variants */
+        .btn-module {
+            border-color: #fff; color: #fff;
+        }
+        .btn-module:hover {
+            background: #fff; color: #000; box-shadow: 0 0 30px rgba(255,255,255,0.4);
+        }
+
+        .btn-join {
+            background: rgba(255,0,51,0.1); animation: btnPulse 2s infinite;
+        }
+
+        /* ==========================================================================
+           7. FOOTER & EXTRAS
+           ========================================================================== */
+        .stats-row {
+            display: flex; justify-content: space-between; margin-top: 30px;
+            background: #111; padding: 15px; border-radius: 8px; border: 1px solid #222;
+        }
+        .stat-item { text-align: center; }
+        .stat-val { font-family: var(--font-head); font-size: 20px; font-weight: 700; color: #fff; }
+        .stat-lbl { font-size: 10px; color: #666; font-family: var(--font-code); }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 30px 15px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.65rem;
+            letter-spacing: 1.5px;
+            color: #555;
+        }
+
+        footer strong {
+    color: var(--primary);
+    text-shadow: 0 0 10px var(--primary-glow);
+}
+
+        /* ANIMATIONS */
+        @keyframes load { 0%{width:0%} 100%{width:100%} }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+        @keyframes btnPulse { 0%,100%{box-shadow: 0 0 10px var(--primary-dim);} 50%{box-shadow: 0 0 25px var(--primary-glow);} }
+        
+        @keyframes glitch-anim {
+            0% { clip: rect(30px, 9999px, 10px, 0); }
+            100% { clip: rect(10px, 9999px, 40px, 0); }
+        }
+        @keyframes glitch-anim-2 {
+            0% { clip: rect(60px, 9999px, 90px, 0); }
+            100% { clip: rect(40px, 9999px, 70px, 0); }
+        }
+/* Subtle ambient glow */
+  .glow-bg {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,0,0,0.15) 0%, transparent 70%);
+    z-index: -1;
+    animation: softPulse 8s infinite ease-in-out;
+  }
+
+  @keyframes softPulse {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.1); }
+  }
+          .scrolling-text {
+            margin-top: 15px;
+            width: 100%;
+            font-size: 1em;
+            color: cyan;
+            text-align: center;
+            padding: 10px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            display: block;
+            /* animation: scroll 10s linear infinite, glowEffect 1.5s infinite alternate; */
+            text-shadow: 0 0 5px red, 0 0 10px red, 0 0 20px red;
+        }
+
+        @keyframes glowEffect {
+            0% {
+                text-shadow: 0 0 5px red, 0 0 10px red;
+            }
+            100% {
+                text-shadow: 0 0 10px red, 0 0 20px red;
+            }
+        }
+              .neon-text {
+            font-size: 1.5em;
+            color: white;
+            text-align: center;
+            text-shadow: 0 0 5px green, 0 0 10px green, 0 0 20px green, 0 0 40px green;
+            animation: neonEffect 1.5s infinite alternate, colorChange 1s infinite;
+        }
+
+        @keyframes neonEffect {
+            0% {
+                text-shadow: 0 0 5px green, 0 0 10px green;
+            }
+            100% {
+                text-shadow: 0 0 10px green, 0 0 20px green;
+            }
+        }
+
+        @keyframes colorChange {
+            0% { color: red; }
+            25% { color: blue; }
+            50% { color: green; }
+            75% { color: yellow; }
+            100% { color: purple; }
+        }
+
+        @keyframes backgroundChange {
+            0% { background: black; }
+            25% { background: #002b36; }
+            50% { background: #001f29; }
+            75% { background: #1e1e1e; }
+            100% { background: black; }
+        }
+             .glitch {
+            animation: glitch 1s infinite;
+            text-align: center;
+        }
+
+        @keyframes glitch {
+            0% { text-shadow: 3px 3px red; }
+            50% { text-shadow: -3px -3px red; }
+            100% { text-shadow: 3px 3px red; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="canvas-bg"></canvas>
+    <div class="grid-overlay"></div>
+    <div class="vignette"></div>
+
+    <div class="wrapper">
+        
+        <div class="top-bar">
+            <div class="brand">
+                <i class="fas fa-shield-alt"></i> TEAM S-H-T 
+            </div>
+            <div class="status-badge">RECRUITING</div>
+        </div>
+
+        <div class="glow-bg"></div>
+
+  <h2 class="neon-text"> TEAM S-H-T IT INSTITUTE</h2>
+  <div class="scrolling-text">
+            <marquee behavior="" direction="left">Become a Specialist of Cyber security for  Protection your system.</marquee>
+        </div>
+  <h5 class="glitch">© Developer - Saiko Boy Rony Ali </h5>
+        <div class="content-area">
+            
+            <div class="info-card" id="card1">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fas fa-flag"></i></div>
+                    <div class="card-title">CYBER SECURITY ROADMAP</div>
+                </div>
+                <ul class="feature-list">
+                    <li><i class="fas fa-square"></i> Cyber security All Rules & Step</li>
+                    <li><i class="fas fa-square"></i> Official Tool's for Basic Knowledge</li>
+                    <li><i class="fas fa-square"></i> Repeat Demo Class For Self Defance</li>
+                    <li><i class="fas fa-square"></i>Networking & Protocols </li>
+                    <li><i class="fas fa-square"></i> Humans Mind Set</li>
+                    <li><i class="fas fa-square"></i> Facebook Security & Hacking</li>
+                    <li><i class="fas fa-square"></i> Top 100 Vurnablity </li>
+                    <li><i class="fas fa-square"></i>Google Dorks</li>
+                </ul>
+            </div>
+
+            <div class="info-card" id="card2">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fas fa-user-shield"></i></div>
+                    <div class="card-title"> Blue Team Simulation</div>
+                </div>
+                <ul class="feature-list">
+                    <li><i class="fas fa-square"></i> Networking Defense & Monitoring</li>
+                    <li><i class="fas fa-square"></i> Incident Response & Digital Forensics</li>
+                    <li><i class="fas fa-square"></i> Self Defance for own Safety</li>
+                    <li><i class="fas fa-square"></i>  Terminal Master Control </li>
+                    <li><i class="fas fa-square"></i> OSINT for Defense </li>
+                    <li><i class="fas fa-square"></i> Footprinting </li>
+                    <li><i class="fas fa-square"></i> DevOps Engineers</li>
+                    <li><i class="fas fa-square"></i> ️DevSecOps Engineers</li>
+                     <li><i class="fas fa-square"></i> Social Engineering Defense</li>
+                    <li><i class="fas fa-square"></i> Web Application Defense</li>
+                    <li><i class="fas fa-square"></i> Vulnerability Management</li>
+                    <li><i class="fas fa-square"></i>  CCNA Complete management</li>
+                    <li><i class="fas fa-square"></i>  Cisco CCT Data Center </li>
+                    <li><i class="fas fa-square"></i> Dark Web Monitoring (Defensive)</li>
+                    <li><i class="fas fa-square"></i> Automation & Scripting </li>
+                    <li><i class="fas fa-square"></i> CCNP Security Firewall V⁰² </li>
+                    
+                </ul>
+            </div>
+
+<div class="info-card" id="card2">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fas fa-user-shield"></i></div>
+                    <div class="card-title"> Red Team Simulation</div>
+                </div>
+                <ul class="feature-list">
+                    <li><i class="fas fa-square"></i> Networking Defense & Monitoring </li>
+                    <li><i class="fas fa-square"></i>  Information Gathering </li>
+                    <li><i class="fas fa-square"></i> Terminal Master Control </li>
+                    <li><i class="fas fa-square"></i>  Full Stack Web development</li>
+                    <li><i class="fas fa-square"></i>  Reverse Engineering</li>
+                    <li><i class="fas fa-square"></i>  Advance Web Attack & Exploit  </li>
+                    <li><i class="fas fa-square"></i>  Tool's Development </li>
+                    <li><i class="fas fa-square"></i>  Malware Development </li>
+                    <li><i class="fas fa-square"></i>  Dark Web Researching</li>
+                    <li><i class="fas fa-square"></i>  Android Mobile Pentesting </li>
+                    <li><i class="fas fa-square"></i> Artificial intelligence ( Ai ) Development</li>
+                    <li><i class="fas fa-square"></i>  Binning & Carding </li>
+                    <li><i class="fas fa-square"></i> Snefing & Spoofing </li>
+                    <li><i class="fas fa-square"></i>  AWS Mechanize </li>
+                    <li><i class="fas fa-square"></i> AZ:900 Azure Foundemental </li>
+                    <li><i class="fas fa-square"></i>  OSEE Hardest Certification </li>
+                    <li><i class="fas fa-square"></i> Black Hat Money Mastery</li>
+                    <li><i class="fas fa-square"></i> Black Hat Exclusive & SMTP </li>
+                    <li><i class="fas fa-square"></i> Z Security Complete </li>
+                </ul>
+            </div>
+            
+            <div class="info-card" id="card2">
+                <div class="card-header">
+                    <div class="card-icon"><i class="fas fa-user-shield"></i></div>
+                    <div class="card-title"> Programing & Development</div>
+                </div>
+                <ul class="feature-list">
+                    <li><i class="fas fa-square"></i>  Full Stack Web development </li>
+                    <li><i class="fas fa-square"></i>  Tool's Development </li>
+                    <li><i class="fas fa-square"></i>  Malware Development </li>
+                    <li><i class="fas fa-square"></i>  Ai Development </li>
+                    <li><i class="fas fa-square"></i>  Game Development </li>
+                    <li><i class="fas fa-square"></i>  App development </li>
+                    <li><i class="fas fa-square"></i> Web app Development</li>
+                </ul>
+            </div>
+            
+           
+
+            <div class="stats-row">
+                <div class="stat-item">
+                    <div class="stat-val">ONLINE</div>
+                    <div class="stat-lbl">Available</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-val">OFFLINE</div>
+                    <div class="stat-lbl">Unavailable</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-val">SUPPORT</div>
+                    <div class="stat-lbl">Anytime</div>
+                </div>
+            </div>
+
+            <div class="action-section">
+                
+                <a href="development.html" target="_blank" class="cyber-btn btn-module">
+                    <i class="fas fa-book-dead"></i> EXPLAIN ROUTINE 
+                </a>
+
+                <a href="form.html" target="_blank" class="cyber-btn btn-join">
+                    <i class="fas fa-file-signature"></i> REGISTRATION FROM 
+                </a>
+
+            </div>
+
+            <div style="text-align:center; margin-top:20px; font-size:12px; color:#666; font-family:var(--font-code);">
+                ⚠ LIMITED SEATS AVAILABLE FOR EVERY BATCH
+            </div>
+
+        </div>
+
+        <footer>
+        <p>Copyright © All Reserve By <strong>TEAM S-H-T</strong> </p>
+    </footer>
+    </div>
+
+    <script>
+        // 1. BOOT SCREEN LOGIC
+        setTimeout(() => {
+            const boot = document.getElementById('bootScreen');
+            boot.style.opacity = '0';
+            setTimeout(() => boot.style.display = 'none', 500);
+        }, 2200);
+
+        // 2. PARTICLE BACKGROUND
+        const canvas = document.getElementById('canvas-bg');
+        const ctx = canvas.getContext('2d');
+        let w, h, particles = [];
+
+        const resize = () => { w = canvas.width = window.innerWidth; h = canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * w;
+                this.y = Math.random() * h;
+                this.vx = (Math.random() - 0.5) * 0.3;
+                this.vy = (Math.random() - 0.5) * 0.3;
+                this.size = Math.random() * 1.5;
+            }
+            update() {
+                this.x += this.vx; this.y += this.vy;
+                if(this.x < 0 || this.x > w) this.vx *= -1;
+                if(this.y < 0 || this.y > h) this.vy *= -1;
+            }
+            draw() {
+                ctx.fillStyle = '#ff0033';
+                ctx.globalAlpha = 0.4;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        for(let i=0; i<60; i++) particles.push(new Particle());
+
+        function animate() {
+            ctx.clearRect(0, 0, w, h);
+            particles.forEach(p => { p.update(); p.draw(); });
+            
+            // Connect lines
+            particles.forEach((a, i) => {
+                particles.slice(i + 1).forEach(b => {
+                    const dist = Math.hypot(a.x - b.x, a.y - b.y);
+                    if (dist < 100) {
+                        ctx.strokeStyle = `rgba(255, 0, 51, ${1 - dist/100})`;
+                        ctx.lineWidth = 0.5;
+                        ctx.beginPath();
+                        ctx.moveTo(a.x, a.y);
+                        ctx.lineTo(b.x, b.y);
+                        ctx.stroke();
+                    }
+                });
+            });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // 3. 3D TILT EFFECT FOR CARDS
+        const cards = document.querySelectorAll('.info-card');
+        
+        document.addEventListener('mousemove', (e) => {
+            if(window.innerWidth > 768) {
+                const x = (window.innerWidth / 2 - e.pageX) / 25;
+                const y = (window.innerHeight / 2 - e.pageY) / 25;
+                
+                cards.forEach(card => {
+                    card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+                });
+            }
+        });
+        
+        // Mobile Gyroscope Tilt (Optional/Advanced)
+        window.addEventListener("deviceorientation", (e) => {
+            const x = e.gamma / 5; // Left/Right
+            const y = e.beta / 5;  // Front/Back
+            cards.forEach(card => {
+                card.style.transform = `rotateY(${x}deg) rotateX(${y}deg)`;
+            });
+        });
+
+    </script>
+</body>
+</html>
